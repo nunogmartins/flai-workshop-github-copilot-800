@@ -16,6 +16,7 @@ Including another URLconf
 import os
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 from rest_framework import routers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -49,6 +50,7 @@ else:
     base_url = "http://localhost:8000"
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/api/', permanent=False), name='root'),
     path('admin/', admin.site.urls),
     path('api/', api_root, name='api-root'),
     path('api/', include(router.urls)),

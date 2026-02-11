@@ -4,25 +4,25 @@ from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, Lea
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.all().order_by('name')
     serializer_class = UserSerializer
 
 
 class TeamViewSet(viewsets.ModelViewSet):
-    queryset = Team.objects.all()
+    queryset = Team.objects.all().order_by('name')
     serializer_class = TeamSerializer
 
 
 class ActivityViewSet(viewsets.ModelViewSet):
-    queryset = Activity.objects.all()
+    queryset = Activity.objects.all().order_by('-date')
     serializer_class = ActivitySerializer
 
 
 class LeaderboardViewSet(viewsets.ModelViewSet):
-    queryset = Leaderboard.objects.all()
+    queryset = Leaderboard.objects.all().order_by('rank')
     serializer_class = LeaderboardSerializer
 
 
 class WorkoutViewSet(viewsets.ModelViewSet):
-    queryset = Workout.objects.all()
+    queryset = Workout.objects.all().order_by('difficulty', 'name')
     serializer_class = WorkoutSerializer
